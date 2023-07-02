@@ -1,0 +1,24 @@
+.form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+  padding: 0.7rem 1rem;
+  width: 100%;
+  border-radius: var(--sm-radius);
+  background-color: var(--bg-app);
+  overflow: hidden;
+  @media (min-width: 767px) {
+    padding: 1.05rem 1.3rem;
+  }
+  input[type='text'] {
+    margin-top: 4px;
+    font-size: 1rem;
+    font-family: var(--f-family);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    caret-color: var(--primary-color);
+  }
+}

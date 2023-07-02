@@ -10,6 +10,10 @@
   padding: 0;
 }
 
+ul {
+  list-style: none;
+}
+
 :root {
   /* Typography */
   --f-family: 'Josefin Sans', sans-serif;
@@ -19,23 +23,8 @@
   /* Primary colors */
   --header-color: hsl(60, 100%, 100%);
   --primary-color: hsl(220, 98%, 61%);
-  --primary-gradient: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
-
-  /* Light Theme Colors */
-  --very-light-gray: hsl(0, 0%, 98%);
-  --very-light-grayish-blue: hsl(236, 33%, 92%);
-  --light-grayish-blue: hsl(233, 11%, 84%);
-  --dark-grayish-blue: hsl(236, 9%, 61%);
-  --very-dark-grayish-blue: hsl(235, 19%, 35%);
-
-  /* dark Theme Colors */
-  --very-dark-blue: hsl(235, 21%, 11%);
-  --very-dark-desaturated-blue: hsl(235, 24%, 19%);
-  --Light-grayish-blue: hsl(234, 39%, 85%);
-  --Light-grayish-blue-hover: hsl(236, 33%, 92%);
-  --dark-grayish-blue: hsl(234, 11%, 52%);
-  --very-dark-grayish-blue: hsl(233, 14%, 35%);
-  --very-dark-grayish-blue: hsl(237, 14%, 26%);
+  --primary-gradient-start: rgba(87, 221, 255, 1);
+  --primary-gradient-end: rgba(192, 88, 243, 1);
 
   /* Border radius */
   --sm-radius: 0.278rem;
@@ -44,13 +33,106 @@
 
 body {
   position: relative;
+  background-color: --bg-color;
   margin: 0;
   font-size: 18px;
   font-family: var(--f-family);
+
+  input[type='checkbox'] {
+    cursor: pointer;
+    position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+    min-width: 26px;
+    min-height: 26px;
+
+    &::after {
+      z-index: 2;
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 22px;
+      height: 22px;
+      background-color: var(--bg-app);
+      border-radius: var(--circle);
+    }
+
+    &::before {
+      z-index: 1;
+      content: url('./images/icon-check.svg');
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      padding: 5.5px 7.5px;
+      transform: translate(-50%, -50%);
+      background-color: var(--border-color);
+      border-radius: var(--circle);
+    }
+
+    &:hover::before {
+      background: linear-gradient(
+        135deg,
+        var(--primary-gradient-start) 30%,
+        var(--primary-gradient-end) 90%
+      );
+    }
+
+    &:checked {
+      &::after {
+        background-color: transparent;
+      }
+
+      &::before {
+        background: linear-gradient(
+          135deg,
+          var(--primary-gradient-start) 30%,
+          var(--primary-gradient-end) 90%
+        );
+      }
+    }
+
+    /*&:checked {
+      background: linear-gradient(
+        135deg,
+        var(--primary-gradient-start) 30%,
+        var(--primary-gradient-end) 90%
+      );
+      &::before {
+        position: absolute;
+        content: url('./images/icon-check.svg');
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }*/
+  }
+
+  input[type='text'] {
+    color: var(--input-color);
+    &::placeholder {
+      color: var(--placeholder-color);
+    }
+  }
 }
 
 body[data-theme='light'] {
-  background-color: var(--very-light-gray);
+  /* Light Theme Colors */
+  --white: hsl(0, 0%, 100%);
+  --very-light-gray: hsl(0, 0%, 98%);
+  --very-light-grayish-blue: hsl(236, 33%, 92%);
+  --light-grayish-blue: hsl(233, 11%, 84%);
+  --dark-grayish-blue: hsl(236, 9%, 61%);
+  --very-dark-grayish-blue: hsl(235, 19%, 35%);
+
+  --bg-color: var(--very-light-gray);
+  --bg-app: var(--white);
+  --border-color: var(--very-light-grayish-blue);
+
+  --input-color: var(--very-dark-grayish-blue);
+  --placeholder-color: var(--dark-grayish-blue);
+  --text-color: var(--very-dark-grayish-blue);
+
   .curtain {
     background-image: url('./images/bg-mobile-light.jpg');
     @media (min-width: 767px) {
@@ -59,8 +141,23 @@ body[data-theme='light'] {
   }
 }
 body[data-theme='dark'] {
-  background-color: var(--very-dark-blue);
-  div.curtain {
+  /* dark Theme Colors */
+  --very-dark-blue: hsl(235, 21%, 11%);
+  --very-dark-desaturated-blue: hsl(235, 24%, 19%);
+  --light-grayish-blue: hsl(234, 39%, 85%);
+  --light-grayish-blue-hover: hsl(236, 33%, 92%);
+  --dark-grayish-blue: hsl(234, 11%, 52%);
+  --very-dark-grayish-blue: hsl(233, 14%, 35%);
+  --very-dark-grayish-blue: hsl(237, 14%, 26%);
+
+  --bg-color: var(--very-dark-blue);
+  --bg-app: var(--very-dark-desaturated-blue);
+  --border-color: var(--very-dark-grayish-blue);
+  --input-color: var(--light-grayish-blue);
+  --placeholder-color: var(--dark-grayish-blue);
+  --text-color: var(--light-grayish-blue);
+
+  .curtain {
     background-image: url('./images/bg-mobile-dark.jpg');
     @media (min-width: 767px) {
       background-image: url('./images/bg-desktop-dark.jpg');
@@ -73,6 +170,14 @@ body[data-theme='dark'] {
   max-width: 540px;
   margin: 0 auto;
   padding: 0 1.3rem;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  @media (min-width: 767px) {
+    gap: 1.3rem;
+  }
 }
 
 .curtain {
