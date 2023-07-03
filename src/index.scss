@@ -33,7 +33,7 @@ ul {
 
 body {
   position: relative;
-  background-color: --bg-color;
+  background-color: var(--bg-color);
   margin: 0;
   font-size: 18px;
   font-family: var(--f-family);
@@ -91,21 +91,6 @@ body {
         );
       }
     }
-
-    /*&:checked {
-      background: linear-gradient(
-        135deg,
-        var(--primary-gradient-start) 30%,
-        var(--primary-gradient-end) 90%
-      );
-      &::before {
-        position: absolute;
-        content: url('./images/icon-check.svg');
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }*/
   }
 
   input[type='text'] {
@@ -132,6 +117,7 @@ body[data-theme='light'] {
   --input-color: var(--very-dark-grayish-blue);
   --placeholder-color: var(--dark-grayish-blue);
   --text-color: var(--very-dark-grayish-blue);
+  --completed: var(--dark-grayish-blue);
 
   .curtain {
     background-image: url('./images/bg-mobile-light.jpg');
@@ -156,6 +142,7 @@ body[data-theme='dark'] {
   --input-color: var(--light-grayish-blue);
   --placeholder-color: var(--dark-grayish-blue);
   --text-color: var(--light-grayish-blue);
+  --completed: var(--dark-grayish-blue);
 
   .curtain {
     background-image: url('./images/bg-mobile-dark.jpg');
@@ -172,6 +159,7 @@ body[data-theme='dark'] {
   padding: 0 1.3rem;
 }
 .main {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 0.9rem;

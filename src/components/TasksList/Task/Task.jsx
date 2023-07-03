@@ -15,14 +15,16 @@ function Task({ id, body, completed }) {
             dispatch(toggleStatusTask(id));
           }}
         />
-        <span>{body}</span>
+        <p className={completed && classes.completed}>{body}</p>
       </label>
-      <TfiClose
-        style={{ cursor: 'pointer' }}
+      <div
+        className={classes.remove}
         onClick={() => {
           dispatch(removeSelectTask(id));
         }}
-      />
+      >
+        <TfiClose />
+      </div>
     </div>
   );
 }
