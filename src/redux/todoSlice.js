@@ -44,11 +44,23 @@ export const toggleStatusTask = createAsyncThunk(
   }
 );
 
+export const clearCompleted = createAsyncThunk(
+  'todo/clearCompleted',
+  async (_, { getState, dispatch }) => {
+    const tasks = getState().app.tasks;
+    const completedTasks = tasks.filter((t) => t.completed === true);
+    completedTasks.forEach((t) => {
+      dispatch(removeSelectTask(t.id));
+    });
+  }
+);
+
 export const todoSlice = createSlice({
   name: 'todo',
   initialState: {
     tasks: [],
     status: 'fulfilled',
+    filter: 'all',
   },
   reducers: {
     addTask: (state, action) => {
@@ -63,6 +75,9 @@ export const todoSlice = createSlice({
           ? (task.completed = !task.completed)
           : task
       );
+    },
+    changeFilter: (state, action) => {
+      state.filter = action.payload.mode;
     },
   },
   extraReducers: {
