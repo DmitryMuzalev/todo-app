@@ -1,20 +1,9 @@
-function FilterItem({ mode }) {
-  return (
-    <a
-      href="#link"
-      onClick={(e) => {
-        e.preventDefault();
-      }}
-    >
-      {mode}
-    </a>
-  );
-}
-export { FilterItem };
+import { FilterItem } from './FilterItem/FilterItem';
+import classes from './Filter.module.scss';
 
 function Filter() {
   return (
-    <nav>
+    <nav className={classes.filter}>
       <FilterItem mode="all" />
       <FilterItem mode="active" />
       <FilterItem mode="completed" />

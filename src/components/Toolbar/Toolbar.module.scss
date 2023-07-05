@@ -1,0 +1,23 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.3rem;
+  background-color: var(--bg-app);
+  span {
+    font-size: 0.9rem;
+    color: var(--completed);
+  }
+  button {
+    cursor: pointer;
+    font-family: var(--f-family);
+    color: var(--completed);
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 0.9rem;
+    &:hover {
+      color: var(--hover-color);
+    }
+  }
+}

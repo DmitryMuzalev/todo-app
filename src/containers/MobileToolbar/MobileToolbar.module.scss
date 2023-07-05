@@ -1,0 +1,9 @@
+.toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1.4rem;
+  border-radius: var(--sm-radius);
+  background: var(--bg-app);
+  box-shadow: var(--shadow-color) 0px 18px 50px -10px;
+}

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { BsSunFill, BsMoonFill } from 'react-icons/bs';
 
 function Header() {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
 
   useEffect(() => {
     document.body.setAttribute('data-theme', theme);

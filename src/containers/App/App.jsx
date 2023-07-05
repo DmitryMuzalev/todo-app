@@ -1,19 +1,16 @@
-import { useEffect } from 'react';
 import { Form } from '../../components/Form/Form';
-import { Header } from '../../components/Heder/Heder';
+import { Header } from '../../components/Header/Header';
 import { TasksList } from '../../components/TasksList/TasksList';
-import { useDispatch } from 'react-redux';
-import { fetchTasks } from '../../redux/todoSlice';
+
 import { Curtain } from '../../components/Curtain/Curtain';
 import { Container } from '../Container/Container';
 import { Main } from '../Main/Main';
+import { useMediaQuery } from 'react-responsive';
+import { MobileToolbar } from '../MobileToolbar/MobileToolbar';
+import { Footer } from '../../components/Footer/Footer';
 
 function App() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchTasks());
-  }, [dispatch]);
-
+  const isMobileScreen = useMediaQuery({ query: '(min-width: 767px)' });
   return (
     <>
       <Curtain />
@@ -22,9 +19,9 @@ function App() {
         <Main>
           <Form />
           <TasksList />
-          {/*<Filter />*/}
+          {!isMobileScreen && <MobileToolbar />}
         </Main>
-        {/*<Footer />*/}
+        <Footer />
       </Container>
     </>
   );

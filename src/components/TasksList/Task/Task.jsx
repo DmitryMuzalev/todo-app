@@ -15,7 +15,7 @@ function Task({ id, body, completed }) {
             dispatch(toggleStatusTask(id));
           }}
         />
-        <p className={completed && classes.completed}>{body}</p>
+        <p className={completed ? classes.completed : null}>{body}</p>
       </label>
       <div
         className={classes.remove}

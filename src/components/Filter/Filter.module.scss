@@ -1,0 +1,21 @@
+.filter {
+  text-transform: capitalize;
+  font-size: 0.9rem;
+  display: flex;
+  gap: 22px;
+  font-weight: var(--fw-bold);
+  a {
+    text-decoration: none;
+    color: var(--completed);
+    &[data-active='true'] {
+      color: var(--primary-color);
+    }
+    &:hover {
+      color: var(--hover-color);
+    }
+    &:active,
+    &:focus {
+      color: var(--primary-color);
+    }
+  }
+}

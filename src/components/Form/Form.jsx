@@ -17,6 +17,7 @@ function Form() {
     };
 
     dispatch(setNewTask(newTask));
+    setChecked(false);
     reset();
   };
 
