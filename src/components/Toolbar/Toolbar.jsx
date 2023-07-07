@@ -1,25 +1,21 @@
-import { useDispatch, useSelector } from 'react-redux';
 import classes from './Toolbar.module.scss';
-import { clearCompleted } from '../../redux/todoSlice';
 import { Filter } from '../Filter/Filter';
 import { useMediaQuery } from 'react-responsive';
+import { useAppContext } from '../../hook/useAppContext';
 
 function Toolbar() {
   const isMobileScreen = useMediaQuery({ query: '(min-width: 767px)' });
-  const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.app.tasks);
+  const { tasks, setTasks } = useAppContext();
   const unresolvedTasks = tasks.filter((t) => t.completed === false).length;
+  const clearCompletedTasks = () => {
+    setTasks(tasks.filter((t) => !t.completed));
+  };
+
   return (
     <div className={classes.toolbar}>
       <span>{unresolvedTasks} items left</span>
       {isMobileScreen && <Filter />}
-      <button
-        onClick={() => {
-          dispatch(clearCompleted());
-        }}
-      >
-        Clear Completed
-      </button>
+      <button onClick={clearCompletedTasks}>Clear Completed</button>
     </div>
   );
 }

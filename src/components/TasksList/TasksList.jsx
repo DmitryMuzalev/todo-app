@@ -1,11 +1,7 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { Task } from './Task/Task';
 import { Toolbar } from '../Toolbar/Toolbar';
 import classes from './TasksList.module.scss';
-import { Preloader } from '../Preloader/Preloader';
-import { useDispatch } from 'react-redux';
-import { fetchTasks } from '../../redux/todoSlice';
+import { useAppContext } from '../../hook/useAppContext';
 
 const tasksFiltering = (tasks, mode) => {
   switch (mode) {
@@ -19,11 +15,7 @@ const tasksFiltering = (tasks, mode) => {
 };
 
 function TasksList() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchTasks());
-  }, [dispatch]);
-  const { tasks, filterMode, status } = useSelector((state) => state.app);
+  const { tasks, filterMode } = useAppContext();
 
   const list = tasksFiltering(tasks, filterMode).map((task) => (
     <li key={task.id}>
@@ -32,7 +24,6 @@ function TasksList() {
   ));
   return (
     <div className={classes.list}>
-      {status === 'pending' && <Preloader />}
       <ul>{list}</ul>
       <Toolbar />
     </div>

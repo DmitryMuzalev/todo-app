@@ -1,7 +1,6 @@
 import { Form } from '../../components/Form/Form';
 import { Header } from '../../components/Header/Header';
 import { TasksList } from '../../components/TasksList/TasksList';
-
 import { Curtain } from '../../components/Curtain/Curtain';
 import { Container } from '../Container/Container';
 import { Main } from '../Main/Main';
