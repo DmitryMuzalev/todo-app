@@ -5,7 +5,7 @@ import { useAppContext } from '../../../hook/useAppContext';
 function Task({ id, body, completed }) {
   const { tasks, setTasks } = useAppContext();
   const removeTask = (id) => {
-    setTasks(tasks.filter((t) => t.id === id));
+    setTasks(tasks.filter((t) => t.id !== id));
   };
   const changeStatusTask = (id) => {
     setTasks(

@@ -1,11 +1,12 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect } from 'react';
+import { useLocalStorage } from '../../hook/useLocalStorage';
 
 export const AppContext = createContext(null);
 
 function Context({ children }) {
-  const [tasks, setTasks] = useState([]);
-  const [theme, setTheme] = useState('dark');
-  const [filterMode, setFilterMode] = useState('all');
+  const [tasks, setTasks] = useLocalStorage([], 'tasks');
+  const [theme, setTheme] = useLocalStorage('dark', 'theme');
+  const [filterMode, setFilterMode] = useLocalStorage('all', 'filterMode');
 
   useEffect(() => {
     document.body.setAttribute('data-theme', theme);
