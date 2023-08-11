@@ -18,31 +18,30 @@ const tasksFiltering = (tasks, mode) => {
 function TasksList() {
   const { tasks, filterMode, setTasks } = useAppContext();
 
+  const variants = {
+    initial: { opacity: 0, height: 0 },
+    animate: { opacity: 1, height: 'auto' },
+    exit: { opacity: 0, height: 0 },
+  };
+
   const list = tasksFiltering(tasks, filterMode).map((task) => (
     <Reorder.Item
       key={task.id}
       value={task}
-      initial={{ opacity: 0, height: 0 }}
-      animate={{ opacity: 1, height: 'auto' }}
-      exit={{ opacity: 0, height: 0 }}
+      {...variants}
       transition={{ duration: 0.3 }}
       whileDrag={{
         scale: 0.95,
         boxShadow: 'var(--shadow-color) 0px 18px 50px -10px',
       }}
     >
-      <Task
-        {...task}
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: 1, height: 'auto' }}
-        exit={{ opacity: 0, height: 0 }}
-      />
+      <Task {...task} />
     </Reorder.Item>
   ));
   return (
     <div className={classes.list}>
       <Reorder.Group as="ul" axis="y" values={tasks} onReorder={setTasks}>
-        <AnimatePresence> {list}</AnimatePresence>
+        <AnimatePresence initial={false}> {list}</AnimatePresence>
       </Reorder.Group>
       <Toolbar />
     </div>
