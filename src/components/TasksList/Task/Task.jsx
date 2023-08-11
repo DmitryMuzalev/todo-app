@@ -14,12 +14,12 @@ function Task({ id, body, completed }) {
   };
   return (
     <div className={classes.task}>
+      <input
+        type="checkbox"
+        checked={completed}
+        onChange={() => changeStatusTask(id)}
+      />
       <label>
-        <input
-          type="checkbox"
-          checked={completed}
-          onChange={() => changeStatusTask(id)}
-        />
         <p className={completed ? classes.completed : null}>{body}</p>
       </label>
       <div className={classes.remove} onClick={() => removeTask(id)}>
